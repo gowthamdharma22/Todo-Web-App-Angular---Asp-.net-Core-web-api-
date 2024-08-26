@@ -1,0 +1,89 @@
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+  <form [formGroup]="form" (ngSubmit)="handleSubmit()">
+    <h3>Register Here</h3>
+  
+    <label for="username">Username</label>
+    <input
+      type="text"
+      placeholder="Username"
+      id="username"
+      formControlName="username"
+    />
+    <div
+      *ngIf="form.get('username')?.touched && form.get('username')?.invalid"
+      class="error"
+    >
+      <small *ngIf="form.get('username')?.errors?.['required']">
+        Username is required.
+      </small>
+      <small *ngIf="form.get('username')?.errors?.['minlength']">
+        Username is less than 8 characters.
+      </small>
+    </div>
+  
+    <label for="email">Email</label>
+    <input
+      type="text"
+      placeholder="Email"
+      id="email"
+      formControlName="email"
+    />
+    <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid" class="error">
+      <small *ngIf="form.get('email')?.errors?.['required']">
+        Email is required.
+      </small>
+      <small *ngIf="form.get('email')?.errors?.['email']">
+        Please enter a valid email address.
+      </small>
+    </div>
+  
+    <label for="password">Password</label>
+    <input
+      type="password"
+      placeholder="Password"
+      id="password"
+      formControlName="password"
+    />
+    <div *ngIf="form.get('password')?.touched && form.get('password')?.invalid" class="error">
+      <small *ngIf="form.get('password')?.errors?.['required']">
+        Password is required.
+      </small>
+      <small *ngIf="form.get('password')?.errors?.['pattern']">
+        Password must be 8-10 characters long, contain at least one uppercase letter, one lowercase letter, one digit, and one special character.
+      </small>
+    </div>
+  
+    <label for="confirmPassword">Confirm Password</label>
+    <input
+      type="password"
+      placeholder="Confirm Password"
+      id="confirmPassword"
+      formControlName="confirmPassword"
+    />
+    <div
+      *ngIf="form.get('confirmPassword')?.touched && form.hasError('mismatch')"
+      class="error"
+    >
+      <small>Passwords do not match.</small>
+    </div>
+  
+    <button type="submit">Register</button>
+    <div class="login">
+      <p>Already have an account? <a [routerLink]="['/login']">Login</a></p>
+    </div>
+  </form>
+  

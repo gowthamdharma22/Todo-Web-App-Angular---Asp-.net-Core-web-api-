@@ -1,0 +1,71 @@
+<html>
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Orbitron"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div id="formDiv">
+      <h1>ToDo List!</h1>
+      <form id="addTodoForm" (ngSubmit)="onSubmit()">
+        <input
+          type="text"
+          name="entry"
+          id="todoText"
+          placeholder="Add your new ToDo..."
+          [(ngModel)]="todoText"
+        />
+        <input type="submit" name="submit" id="todoAdd" value="+" />
+      </form>
+      <ul id="todoUl">
+        <li *ngFor="let todo of todoList">
+          <span [ngClass]="{ completed: todo.completed }">
+            <ng-container *ngIf="todo.isEditing; else todoView">
+              <form (ngSubmit)="saveEdit(todo.id)">
+                <input
+                  type="text"
+                  [(ngModel)]="todo.editText"
+                  name="editText"
+                />
+                <button class="delete-botton" (click)="cancelEdit(todo.id)">
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+                <button class="edit-botton" type="submit">
+                  <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                </button>
+              </form>
+            </ng-container>
+            <ng-template #todoView>
+              {{ todo.text }}
+              <button class="delete-botton" (click)="deleteTodo(todo.id)">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </button>
+              <button
+                [ngClass]="
+                  todo?.completed ? 'edit-botton-selected' : 'edit-botton'
+                "
+                [disabled]="todo?.completed"
+                (click)="editTodo(todo.id)"
+              >
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+              </button>
+              <button class="done-botton" (click)="toggleCompleted(todo.id)">
+                <i
+                  class="fa"
+                  [ngClass]="todo.completed ? 'fa-repeat' : 'fa-check'"
+                  aria-hidden="true"
+                ></i>
+              </button>
+            </ng-template>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

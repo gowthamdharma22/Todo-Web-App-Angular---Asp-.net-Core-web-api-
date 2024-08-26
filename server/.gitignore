@@ -1,0 +1,52 @@
+# ASP.NET Core specific files
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code directory
+.vscode/
+
+# Visual Studio directories
+.vs/
+.idea/
+
+# Build directories
+BuildArtifacts/
+*_BuildLogFiles/
+package-lock.json
+yarn.lock
+
+# User-specific files
+*.rsuser
+*.resharper
+*.sln.iml
+
+# Logs
+*.log
+
+# Environment variables
+.env
+
+# Backup files
+*.bak
+*.tmp
+
+# NPM packages directory
+node_modules/
+
+# MacOS generated files
+.DS_Store
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# Exclude custom sensitive configuration files
+appsettings.json
+
+# You can add any other sensitive appsettings files you want to exclude
+# For example:
+# appsettings.Production.json

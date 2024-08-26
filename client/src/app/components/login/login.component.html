@@ -1,0 +1,58 @@
+<head>
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<div class="background">
+  <div class="shape"></div>
+  <div class="shape"></div>
+</div>
+<form [formGroup]="form" (ngSubmit)="handleSubmit()">
+  <h3>Login Here</h3>
+
+  <label for="username">Email</label>
+  <input
+    type="text"
+    placeholder="Email"
+    id="username"
+    formControlName="email"
+  />
+  <div
+    *ngIf="form.get('email')?.touched && form.get('email')?.invalid"
+    class="error"
+  >
+    <small *ngIf="form.get('email')?.errors?.['required']"
+      >Email is required.</small
+    >
+    <small *ngIf="form.get('email')?.errors?.['email']"
+      >Please enter a valid email address.</small
+    >
+  </div>
+
+  <label for="password">Password</label>
+  <input
+    type="password"
+    placeholder="Password"
+    id="password"
+    formControlName="password"
+  />
+  <div
+    *ngIf="form.get('password')?.touched && form.get('password')?.invalid"
+    class="error"
+  >
+    <small *ngIf="form.get('password')?.errors?.['required']"
+      >Password is required.</small
+    >
+  </div>
+
+  <button type="submit">Log In</button>
+  <div class="register">
+    <p>New to this <a [routerLink]="['/register']">Signup</a></p>
+  </div>
+</form>
